@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BDO Grotesk — from Webflow CDN */
+@font-face {
+  font-family: "BDO Grotesk";
+  src: url("https://uploads-ssl.webflow.com/655a5733561c73ca5f2f6d32/655a573700f1cf6c71b02a34_BDOGrotesk-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BDO Grotesk";
+  src: url("https://uploads-ssl.webflow.com/655a5733561c73ca5f2f6d32/655a5737cc87e7b17a2bdef4_BDOGrotesk-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BDO Grotesk";
+  src: url("https://uploads-ssl.webflow.com/655a5733561c73ca5f2f6d32/655a5737c5b36b08c069fce7_BDOGrotesk-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0c0c0f;
+    color: #ffffff;
+    font-family: "BDO Grotesk", "Plus Jakarta Sans", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 { @apply text-h1 font-bold; }
+  h2 { @apply text-h2 font-bold; }
+  h3 { @apply text-h3 font-bold; }
+  h4 { @apply text-h4 font-semibold; }
+  h5 { @apply text-h5 font-semibold; }
+  h6 { @apply text-h6 font-semibold; }
+}
+
+@layer components {
+  .container {
+    @apply max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .card-outline {
+    @apply absolute inset-0 rounded-xl border border-white/10 pointer-events-none transition-colors duration-300;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for marquee */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Marquee pause on hover */
+  .marquee-wrap:hover .animate-marquee { animation-play-state: paused; }
+  .marquee-wrap:hover .animate-marquee-reverse { animation-play-state: paused; }
+}
