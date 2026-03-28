@@ -269,9 +269,9 @@ function Step2Visual({ fv }: { fv: boolean }) {
         transition={{ duration: 0.45, delay: fv ? 0.2 : 0, ease: 'easeOut' }}
       >
         <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.05]">
-          <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
           <span className="text-white/25 text-[10px] ml-2">zerk-integration.js</span>
         </div>
         <div className="overflow-hidden" style={{ height: 178 }}>

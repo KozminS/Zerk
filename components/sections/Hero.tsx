@@ -94,27 +94,6 @@ export default function Hero() {
             </Button>
           </div>
 
-          {/* Social proof */}
-          <div
-            className="opacity-0 animate-fade-in-up flex items-center gap-6 pt-2 flex-wrap justify-center"
-            style={{ animationDelay: "480ms", animationFillMode: "forwards" }}
-          >
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="h-8 w-8 rounded-full bg-white/10 border-2 border-bg" />
-                ))}
-              </div>
-              <span className="text-p-03 text-white/50">
-                <strong className="text-white">120+</strong> агентств недвижимости
-              </span>
-            </div>
-            <div className="h-4 w-px bg-white/10 hidden sm:block" />
-            <div className="flex items-center gap-2">
-              <span className="text-accent font-bold">96%</span>
-              <span className="text-p-03 text-white/50">удовлетворённость клиентов</span>
-            </div>
-          </div>
 
         </div>
       </div>

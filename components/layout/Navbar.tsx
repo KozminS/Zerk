@@ -29,6 +29,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-[9999] flex justify-center px-4">
       <motion.div
+        initial={false}
         animate={{
           marginTop: floating ? 12 : 0,
           borderRadius: floating ? 18 : 0,
@@ -38,14 +39,14 @@ export default function Navbar() {
           boxShadow: floating
             ? "0 8px 32px rgba(0,0,0,0.45)"
             : "0 0px 0px rgba(0,0,0,0)",
+          backdropFilter: floating ? "blur(14px)" : "blur(0px)",
+          WebkitBackdropFilter: floating ? "blur(14px)" : "blur(0px)",
         }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         style={{
           width: "100%",
           borderWidth: 1,
           borderStyle: "solid",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
         }}
       >
         <nav className="flex items-center justify-between px-6 h-[64px]">
