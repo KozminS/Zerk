@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 
@@ -7,36 +6,22 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
 
-      {/* ── Earth background image ── */}
+      {/* ── Video background ── */}
       <div className="absolute inset-0 z-0">
-        {/* Raw photo — hue-rotated from blue → accent yellow-green */}
-        <div
-          className="absolute inset-0"
-          style={{ filter: "hue-rotate(195deg) saturate(1.4) brightness(0.85)" }}
-        >
-          <Image
-            src="/hero-earth.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </div>
-
-        {/* Dark overlay to match #0c0c0f brand bg */}
-        <div className="absolute inset-0 bg-bg/55" />
-
-        {/* Top vignette — stars area stays dark */}
-        <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-transparent to-bg/0" />
-
-        {/* Noise texture */}
-        <div
-          className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundSize: "256px 256px",
-          }}
+        <video
+          src="/hero-bg.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-bg/60" />
+
+        {/* Top vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-transparent to-bg/0" />
       </div>
 
       {/* Bottom fade into page */}

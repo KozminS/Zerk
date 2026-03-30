@@ -26,18 +26,10 @@ function useInView(threshold = 0.2) {
 function PhoneMissedIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M16.5 2.5l5 5M21.5 2.5l-5 5"
-        stroke="#ef4444"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
+      <path d="M16.5 2.5l5 5M21.5 2.5l-5 5" stroke="#cffe25" strokeWidth="1.8" strokeLinecap="round" />
       <path
         d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.01 2.84 2 2 0 012 .67h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.47a16 16 0 006.44 6.44l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
-        stroke="#ef4444"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
       />
     </svg>
   );
@@ -46,14 +38,8 @@ function PhoneMissedIcon() {
 function ClockIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" stroke="#ef4444" strokeWidth="1.8" />
-      <path
-        d="M12 6v6l4 2"
-        stroke="#ef4444"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.8" />
+      <path d="M12 6v6l4 2" stroke="#cffe25" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -63,17 +49,9 @@ function PhoneSilentIcon() {
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
         d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.01 2.84 2 2 0 012 .67h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.47a16 16 0 006.44 6.44l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
-        stroke="#ef4444"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
       />
-      <path
-        d="M18 2l4 4M18 6l4-4"
-        stroke="#ef4444"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
+      <path d="M18 2l4 4M18 6l4-4" stroke="#cffe25" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }
@@ -111,29 +89,26 @@ function ProblemCard({
 }) {
   return (
     <div
-      className="transition-all duration-700 ease-out"
+      className="transition-all duration-700 ease-out h-full"
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0px)" : "translateY(48px)",
         transitionDelay: `${delay}ms`,
       }}
     >
-      <Card className="p-6 flex flex-col gap-5 h-full group hover:border-red-500/20">
-        {/* Top row */}
+      <Card className="p-6 flex flex-col gap-5 h-full">
         <div className="flex items-start justify-between gap-4">
-          <div className="h-12 w-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 transition-colors duration-300 group-hover:bg-red-500/15">
+          <div className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
             <Icon />
           </div>
-          <div className="flex items-center gap-1.5 rounded-full bg-red-500/10 border border-red-500/20 px-3 py-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
-            <span className="text-p-03 text-red-400 font-medium">{tag}</span>
+          <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="text-p-03 text-white/60 font-medium">{tag}</span>
           </div>
         </div>
 
-        {/* Loss marker */}
-        <div className="h-px w-full bg-gradient-to-r from-red-500/30 via-red-500/10 to-transparent" />
+        <div className="h-px w-full bg-gradient-to-r from-accent/20 via-accent/5 to-transparent" />
 
-        {/* Text */}
         <p className="text-p-01 font-medium text-white/85 leading-snug">{text}</p>
       </Card>
     </div>
@@ -154,18 +129,17 @@ export default function Problem() {
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translateY(0px)" : "translateY(32px)",
-              transitionDelay: "0ms",
             }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-4 py-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
-              <span className="text-p-03 font-medium text-red-400">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span className="text-p-03 font-medium text-white/60">
                 Реальные потери
               </span>
             </div>
             <h2 className="text-h2 font-bold max-w-2xl">
               Сколько клиентов ваше агентство{" "}
-              <span className="text-red-400">потеряло</span> на этой неделе?
+              <span className="text-accent">потеряло</span> на этой неделе?
             </h2>
             <p className="text-p-02 text-text-grey max-w-lg">
               Пока ваш менеджер занят или спит — конкурент уже ответил.
@@ -197,24 +171,20 @@ export default function Problem() {
             }}
           >
             <Card hover={false} className="p-8 md:p-12 relative overflow-hidden">
-              {/* Background glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-red-500/5 blur-3xl pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
 
               <div className="relative flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-                {/* Number */}
                 <div className="flex flex-col items-center md:items-start shrink-0">
-                  <span className="text-[72px] md:text-[88px] font-bold leading-none text-red-400 tracking-tight">
+                  <span className="text-[72px] md:text-[88px] font-bold leading-none text-white tracking-tight">
                     20–30%
                   </span>
                   <span className="text-p-02 text-text-grey mt-1">входящих теряется</span>
                 </div>
 
-                {/* Divider */}
                 <div className="hidden md:block w-px self-stretch bg-white/10" />
                 <div className="block md:hidden h-px w-full bg-white/10" />
 
-                {/* Context */}
                 <div className="flex flex-col gap-4 justify-center">
                   <p className="text-h5 font-semibold text-white/90 leading-snug">
                     Среднее агентство теряет каждого четвёртого клиента просто
