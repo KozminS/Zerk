@@ -1,25 +1,24 @@
 import Hero from "@/components/sections/Hero";
-import Brands from "@/components/sections/Brands";
-import Intro from "@/components/sections/Intro";
+import Problem from "@/components/sections/Problem";
 import Features from "@/components/sections/Features";
-import Team from "@/components/sections/Team";
+import WhyUs from "@/components/sections/WhyUs";
 import Capabilities from "@/components/sections/Capabilities";
 import HowWeWork from "@/components/sections/HowWeWork";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
+import { SectionReveal } from "@/components/ui/SectionReveal";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Brands />
-      <Intro />
-      <Features />
-      <Team />
-      <Capabilities />
-      <HowWeWork />
-      <FAQ />
-      <CTA />
+      <SectionReveal><Problem /></SectionReveal>
+      <SectionReveal><Features /></SectionReveal>
+      <SectionReveal><WhyUs /></SectionReveal>
+      <SectionReveal><Capabilities /></SectionReveal>
+      <SectionReveal><HowWeWork /></SectionReveal>
+      <SectionReveal><FAQ /></SectionReveal>
+      <SectionReveal><CTA /></SectionReveal>
     </>
   );
 }

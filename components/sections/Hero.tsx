@@ -51,7 +51,7 @@ export default function Hero() {
             className="opacity-0 animate-fade-in-up"
             style={{ animationDelay: "0ms", animationFillMode: "forwards" }}
           >
-            <Badge>ИИ Колл-центр 24/7 — теперь доступен</Badge>
+            <Badge>AI-инфраструктура для недвижимости</Badge>
           </div>
 
           {/* Heading */}
@@ -60,9 +60,8 @@ export default function Hero() {
             style={{ animationDelay: "120ms", animationFillMode: "forwards" }}
           >
             <h1 className="text-[44px] md:text-[58px] lg:text-[68px] leading-[1.05] font-bold tracking-tight text-center">
-              Автоматизируйте продажи{" "}
-              <span className="text-accent">недвижимости</span>{" "}
-              с помощью ИИ
+              Автоматизируем 100% входящих для{" "}
+              <span className="text-accent">вашего агентства</span>
             </h1>
           </div>
 
@@ -72,9 +71,8 @@ export default function Hero() {
             style={{ animationDelay: "240ms", animationFillMode: "forwards" }}
           >
             <p className="text-p-01 text-white/60 max-w-xl">
-              Zerk создаёт AI-чатботы и голосовые колл-центры для агентств
-              недвижимости. Отвечаем на звонки и заявки 24/7 — без найма
-              операторов.
+              Бот принимает заявку, квалифицирует клиента, записывает на показ,
+              и всё это попадает в вашу CRM.
             </p>
           </div>
 

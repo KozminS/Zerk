@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 
 const INTERVAL = 4000
 
@@ -384,14 +384,28 @@ const Visuals = [Step1Visual, Step2Visual, Step3Visual]
 
 export default function HowWeWork() {
   const [active, setActive] = useState(0)
-  // Track which steps have already played their animation
   const [seenSteps, setSeenSteps] = useState<Set<number>>(new Set())
 
+  // Detect when section enters viewport
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { amount: 0.25, once: false })
+  const hasEnteredRef = useRef(false)
+
+  // On first enter: reset to step 0 so animations play from the start
   useEffect(() => {
+    if (isInView && !hasEnteredRef.current) {
+      hasEnteredRef.current = true
+      setActive(0)
+      setSeenSteps(new Set())
+    }
+  }, [isInView])
+
+  // Auto-advance only while section is visible
+  useEffect(() => {
+    if (!isInView) return
     const advance = setTimeout(() => {
       setActive((prev) => (prev + 1) % steps.length)
     }, INTERVAL)
-    // Mark step as seen after animations finish (~1.6s)
     const markSeen = setTimeout(() => {
       setSeenSteps((prev) => new Set([...prev, active]))
     }, 1600)
@@ -399,7 +413,7 @@ export default function HowWeWork() {
       clearTimeout(advance)
       clearTimeout(markSeen)
     }
-  }, [active])
+  }, [active, isInView])
 
   const handleTabClick = (i: number) => {
     if (i !== active) setActive(i)
@@ -409,7 +423,7 @@ export default function HowWeWork() {
   const fv = !seenSteps.has(active)
 
   return (
-    <section className="section-padding">
+    <section className="section-padding" ref={sectionRef}>
       <div className="container">
         <div className="mb-10">
           <p className="text-accent text-p-03 font-medium uppercase tracking-widest mb-3">Процесс</p>
