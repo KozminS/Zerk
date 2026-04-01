@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import AnimatedChat from "@/components/ui/AnimatedChat";
-import AnimatedWaveform from "@/components/ui/AnimatedWaveform";
 import OrbitingIntegrations from "@/components/ui/OrbitingIntegrations";
+import AnimatedWaveform from "@/components/ui/AnimatedWaveform";
 
 function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,34 +25,124 @@ const checkIcon = (
 );
 
 
-/* ── 24/7 illustration ── */
+/* ── Call center illustration ── */
+const WAVE_BARS = 36;
+
+function useCallWave(active: boolean) {
+  const [bars, setBars] = useState<number[]>(Array(WAVE_BARS).fill(3));
+  const rafRef = useRef<number>(0);
+  const lastRef = useRef<number>(0);
+  useEffect(() => {
+    if (!active) { setBars(Array(WAVE_BARS).fill(3)); return; }
+    const loop = (ts: number) => {
+      if (ts - lastRef.current >= 40) {
+        lastRef.current = ts;
+        const t = ts / 1000;
+        const env = Math.max(0, Math.sin(t * 1.8) * Math.sin(t * 0.6 + 0.7));
+        setBars(Array.from({ length: WAVE_BARS }, (_, i) => {
+          if (env < 0.08) return 3 + Math.random() * 3;
+          const w = Math.sin(i * 0.5 + t * 13) * 0.5 + 0.5;
+          return Math.min(100, Math.max(5, w * env * 100 + 5));
+        }));
+      }
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [active]);
+  return bars;
+}
+
 function CallCenterIllustration() {
+  const [phase, setPhase] = useState<"ringing" | "active">("ringing");
+  const [secs, setSecs] = useState(0);
+  const bars = useCallWave(phase === "active");
+
+  // Phase loop: ring 2.5s → active 8s → repeat
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    const ring = () => {
+      setPhase("ringing");
+      setSecs(0);
+      timeout = setTimeout(() => { setPhase("active"); timeout = setTimeout(ring, 8000); }, 2500);
+    };
+    ring();
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Timer during active call
+  useEffect(() => {
+    if (phase !== "active") return;
+    const id = setInterval(() => setSecs(s => s + 1), 1000);
+    return () => clearInterval(id);
+  }, [phase]);
+
+  const mm = String(Math.floor(secs / 60)).padStart(2, "0");
+  const ss = String(secs % 60).padStart(2, "0");
+
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden select-none">
-      {/* Big background text */}
-      <span
-        className="absolute text-[120px] md:text-[150px] font-black text-white leading-none tracking-tighter"
-        style={{ opacity: 0.055, userSelect: "none" }}
-      >
-        24/7
-      </span>
+    <div className="relative w-full h-full flex flex-col items-center justify-center gap-6 overflow-hidden select-none py-8">
+      {/* Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(207,254,37,0.07)_0%,transparent_65%)]" />
 
-      {/* Accent glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(207,254,37,0.08)_0%,transparent_70%)]" />
+      {/* Time */}
+      <span className="relative z-10 text-white/25 text-[13px] font-mono tabular-nums">03:14</span>
 
-      {/* Center pill */}
-      <div className="relative z-10 flex flex-col items-center gap-6">
-        <div className="flex items-center gap-3 bg-accent rounded-full px-7 py-4 shadow-[0_0_40px_rgba(207,254,37,0.35)]">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M11 2a9 9 0 100 18A9 9 0 0011 2z" stroke="#0c0c0f" strokeWidth="1.8"/>
-            <circle cx="11" cy="11" r="3" fill="#0c0c0f"/>
-            <path d="M11 2v2M11 18v2M2 11h2M18 11h2" stroke="#0c0c0f" strokeWidth="1.5" strokeLinecap="round"/>
+      {/* Avatar */}
+      <div className="relative z-10 flex items-center justify-center">
+        {phase === "ringing" && <>
+          <div className="absolute rounded-full border border-accent/25 animate-ping" style={{ width: 88, height: 88, animationDuration: "1.3s" }} />
+          <div className="absolute rounded-full border border-accent/12 animate-ping" style={{ width: 112, height: 112, animationDuration: "1.3s", animationDelay: "0.25s" }} />
+        </>}
+        <div className="w-16 h-16 rounded-full bg-white/8 border border-white/12 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 10-16 0" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="12" cy="10" r="4" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"/>
           </svg>
-          <span className="text-bg font-bold text-[17px] tracking-tight">AI Поддержка</span>
         </div>
+      </div>
 
-        {/* Waveform below */}
-        <AnimatedWaveform />
+      {/* Name + status */}
+      <div className="relative z-10 flex flex-col items-center gap-1">
+        <span className="text-white font-semibold text-[15px]">+7 (999) 823-41-09</span>
+        {phase === "ringing"
+          ? <span className="text-white/40 text-[12px]">Входящий звонок...</span>
+          : <span className="text-accent text-[12px] font-medium tabular-nums">{mm}:{ss}</span>
+        }
+      </div>
+
+      {/* Waveform — only during active call */}
+      <div className="relative z-10 flex items-end gap-[3px] w-full max-w-[260px] px-2" style={{ height: 48 }}>
+        {bars.map((h, i) => (
+          <div key={i} className="flex-1 rounded-full"
+            style={{
+              height: `${h}%`,
+              background: phase === "active"
+                ? `rgba(207,254,37,${0.35 + (h / 100) * 0.65})`
+                : "rgba(255,255,255,0.08)",
+              transition: `height ${40 + (i % 5) * 8}ms ease-out, background 0.5s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Buttons */}
+      <div className="relative z-10 flex items-center gap-4">
+        {phase === "ringing" ? (
+          /* Answer button */
+          <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center shadow-[0_0_24px_rgba(207,254,37,0.4)]">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.01 2.84 2 2 0 012 .67h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.47a16 16 0 006.44 6.44l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" fill="#0c0c0f"/>
+            </svg>
+          </div>
+        ) : (
+          /* End call button */
+          <div className="w-14 h-14 rounded-full bg-red-500/80 flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.01 2.84 2 2 0 012 .67h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.47a16 16 0 006.44 6.44l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" fill="white"/>
+            </svg>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -65,7 +155,7 @@ export default function Features() {
   const intRef = useInView(0.2);
 
   return (
-    <section className="section-padding">
+    <section id="features" className="section-padding">
       <div className="container">
         <div className="flex flex-col gap-24">
 
@@ -83,11 +173,11 @@ export default function Features() {
               <span className="text-p-03 font-medium text-white/60">Наши продукты</span>
             </div>
             <h2 className="text-h2 font-bold max-w-2xl">
-              Созданы специально для рынка недвижимости
+              Три системы. Один поток лидов. Ни один не теряется.
             </h2>
             <p className="text-p-02 text-text-grey max-w-xl">
-              Три системы — чат-бот, голосовой колл-центр и интеграционный слой.
-              Вместе они закрывают 100% входящего потока без участия менеджера.
+              Чат-бот, голосовой ИИ и интеграционный слой работают вместе
+              и передают в CRM только готовых к сделке клиентов.
             </p>
           </div>
 
@@ -107,16 +197,16 @@ export default function Features() {
                 <span className="text-p-03 text-green-300 font-medium">Чат-бот</span>
               </div>
               <h3 className="text-h3 font-bold text-white">
-                Закрывает сделки, пока вы спите
+                Назначает встречи, пока вы спите
               </h3>
               <p className="text-p-02 text-text-grey">
-                ИИ-ассистент отвечает в WhatsApp, Telegram и на сайте. Квалифицирует
-                лиды, отвечает на вопросы об объектах, записывает на показ —
-                без участия менеджера.
+                Наш ИИ-ассистент отвечает в WhatsApp, Telegram и на сайте.
+                Квалифицирует лиды, отвечает на вопросы об объектах, записывает
+                на показ. Всё без участия человека.
               </p>
               <ul className="flex flex-col gap-3">
                 {[
-                  "Интеграция за 1 день",
+                  "Интеграция с любыми платформами",
                   "Понимает вопросы об объектах, ценах, документах",
                   "Автоматически передаёт горячих лидов в CRM",
                 ].map((item) => (
@@ -158,17 +248,17 @@ export default function Features() {
                 <span className="text-p-03 text-green-300 font-medium">Работает 24/7</span>
               </div>
               <h3 className="text-h3 font-bold text-white">
-                AI Колл-центр — как живой менеджер
+                Звонок в 3 ночи. Отвечает Zerk
               </h3>
               <p className="text-p-02 text-text-grey">
-                Голосовой ИИ-агент принимает звонки, отвечает на вопросы об объектах
-                и записывает на показ. Ни один звонок не останется без ответа —
-                даже в 3 ночи.
+                Голосовой ИИ говорит живым языком, отвечает на вопросы об объектах
+                и записывает на показ. Клиенты не чувствуют разницы,
+                а вы не теряете звонки.
               </p>
               <ul className="flex flex-col gap-3">
                 {[
                   "Отвечает за 3 секунды, без очереди",
-                  "Говорит естественно — клиенты не понимают, что это ИИ",
+                  "Говорит естественно, клиенты не понимают, что это ИИ",
                   "Полная транскрипция и запись каждого звонка",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
@@ -198,12 +288,12 @@ export default function Features() {
                 <span className="text-p-03 text-white/60 font-medium">Интеграции</span>
               </div>
               <h3 className="text-h3 font-bold text-white">
-                Подключается к вашему стеку за 1 день
+                Встраивается в то, что уже работает
               </h3>
               <p className="text-p-02 text-text-grey">
-                Не меняйте то, что работает. Zerk встраивается в AmoCRM,
-                Битрикс24, WhatsApp Business и ваш сайт без программиста.
-                ЦИАН и Авито — тоже поддерживаются.
+                Не надо менять CRM или нанимать разработчика. Zerk подключается
+                к AmoCRM, Битрикс24, WhatsApp и Telegram за один день.
+                Лиды сразу появляются в вашей базе.
               </p>
               <div className="flex flex-wrap gap-2">
                 {["AmoCRM", "Битрикс24", "WhatsApp", "Telegram", "ЦИАН", "Авито"].map((tag) => (

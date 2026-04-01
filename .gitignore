@@ -8,3 +8,6 @@
 npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
+
+# Large source files
+Smooth Slow Animation Video.mp4

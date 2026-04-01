@@ -7,10 +7,10 @@ const footerLinks = {
   services: {
     label: "Услуги",
     links: [
-      { label: "AI-чатбот", href: "/services#chatbot" },
-      { label: "AI Колл-центр", href: "/services#callcenter" },
-      { label: "Интеграции", href: "/services#integrations" },
-      { label: "Аналитика", href: "/services#analytics" },
+      { label: "AI-чатбот", href: "/#chatbot" },
+      { label: "AI Колл-центр", href: "/#callcenter" },
+      { label: "Интеграции", href: "/#integrations" },
+      { label: "Аналитика", href: "/#analytics" },
     ],
   },
   company: {

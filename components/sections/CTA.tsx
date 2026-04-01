@@ -18,37 +18,28 @@ export default function CTA() {
           />
 
           <div className="relative z-10 flex flex-col items-center gap-6 max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-p-03 font-medium text-accent">
-                Бесплатное демо
-              </span>
-            </div>
-
             <h2 className="text-h2 font-bold text-white">
-              Готовы автоматизировать ваше агентство?
+              Начните зарабатывать больше с нами
             </h2>
 
             <p className="text-p-01 text-white/60">
-              Запустим Zerk для вашего агентства за 24 часа. Первые 14 дней
-              бесплатно — без обязательств и кредитных карт.
+              Сделаем всё, чтобы ваши клиенты оставались только с вами.
             </p>
 
             <div className="flex items-center gap-4 flex-wrap justify-center">
               <Button variant="primary" href="/contact">
-                Получить бесплатное демо
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-1">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="mr-1.5">
+                  <path d="M2 3.5C2 2.67 2.67 2 3.5 2h1.75c.37 0 .7.25.79.61l.75 3a.8.8 0 01-.22.79L5.5 7.5a8.6 8.6 0 004 4l1.1-1.07a.8.8 0 01.79-.22l3 .75c.36.09.61.42.61.79V13.5c0 .83-.67 1.5-1.5 1.5C6.1 15 1 9.9 1 3.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Записаться на созвон
+              </Button>
+              <Button variant="outline" href="/chat">
+                Попробовать демо
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="ml-1.5">
+                  <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </Button>
-              <Button variant="outline" href="/#pricing">
-                Сравнить тарифы
-              </Button>
             </div>
-
-            <p className="text-p-03 text-white/30">
-              Уже работают 120+ агентств недвижимости · Настройка за 1 день
-            </p>
           </div>
         </div>
       </div>

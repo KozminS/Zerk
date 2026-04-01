@@ -9,10 +9,9 @@ import Button from "@/components/ui/Button";
 
 const navLinks = [
   { label: "Главная", href: "/" },
-  { label: "Демо-чат", href: "/chat" },
-  { label: "О нас", href: "/#about" },
-  { label: "Услуги", href: "/#services" },
-  { label: "Цены", href: "/#pricing" },
+  { label: "Демо", href: "/chat" },
+  { label: "О нас", href: "/#how-we-work" },
+  { label: "Услуги", href: "/#features" },
 ];
 
 export default function Navbar() {
@@ -57,7 +56,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 ml-16">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -70,15 +69,15 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="/contact"
-              className="text-p-02 text-text-grey hover:text-white transition-colors"
-            >
-              Войти
-            </Link>
-            <Button variant="primary" href="/contact">
-              Оставить заявку
+          <div className="hidden md:flex items-center gap-3">
+            <Button variant="outline" href="/chat" className="!px-4 !py-2 !text-xs">
+              Демо
+            </Button>
+            <Button variant="primary" href="/contact" className="!px-4 !py-2 !text-xs">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="mr-1.5">
+                <path d="M2 3.5C2 2.67 2.67 2 3.5 2h1.75c.37 0 .7.25.79.61l.75 3a.8.8 0 01-.22.79L5.5 7.5a8.6 8.6 0 004 4l1.1-1.07a.8.8 0 01.79-.22l3 .75c.36.09.61.42.61.79V13.5c0 .83-.67 1.5-1.5 1.5C6.1 15 1 9.9 1 3.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Записаться на созвон
             </Button>
           </div>
 
@@ -119,19 +118,27 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-4 flex flex-col gap-3">
-            <Link
-              href="/contact"
-              className="text-p-02 text-white/60 hover:text-white text-center py-2 transition-colors"
+            <Button
+              variant="outline"
+              href="/chat"
+              className="w-full justify-center"
               onClick={() => setOpen(false)}
             >
-              Войти
-            </Link>
+              Попробовать демо
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="ml-1.5">
+                <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Button>
             <Button
               variant="primary"
               href="/contact"
               className="w-full justify-center"
+              onClick={() => setOpen(false)}
             >
-              Оставить заявку
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mr-1.5">
+                <path d="M2 3.5C2 2.67 2.67 2 3.5 2h1.75c.37 0 .7.25.79.61l.75 3a.8.8 0 01-.22.79L5.5 7.5a8.6 8.6 0 004 4l1.1-1.07a.8.8 0 01.79-.22l3 .75c.36.09.61.42.61.79V13.5c0 .83-.67 1.5-1.5 1.5C6.1 15 1 9.9 1 3.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Записаться на созвон
             </Button>
           </div>
         </div>

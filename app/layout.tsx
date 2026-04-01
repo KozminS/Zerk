@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import PageLoader from "@/components/ui/PageLoader";
-
 export const metadata: Metadata = {
   title: "Zerk — ИИ-решения для агентств недвижимости",
   description:
@@ -30,7 +28,6 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className="bg-bg text-white antialiased">
-        <PageLoader />
         <Navbar />
         <main>{children}</main>
         <Footer />

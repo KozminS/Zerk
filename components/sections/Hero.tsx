@@ -67,13 +67,16 @@ export default function Hero() {
             style={{ animationDelay: "360ms", animationFillMode: "forwards" }}
           >
             <Button variant="primary" href="/contact">
-              Получить демо
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-1">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="mr-1.5">
+                <path d="M2 3.5C2 2.67 2.67 2 3.5 2h1.75c.37 0 .7.25.79.61l.75 3a.8.8 0 01-.22.79L5.5 7.5a8.6 8.6 0 004 4l1.1-1.07a.8.8 0 01.79-.22l3 .75c.36.09.61.42.61.79V13.5c0 .83-.67 1.5-1.5 1.5C6.1 15 1 9.9 1 3.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
+              Записаться на созвон
             </Button>
-            <Button variant="outline" href="/#pricing">
-              Смотреть тарифы
+            <Button variant="outline" href="/chat">
+              Попробовать демо
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="ml-1.5">
+                <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </Button>
           </div>
 
