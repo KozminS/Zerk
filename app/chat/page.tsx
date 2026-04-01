@@ -2,7 +2,7 @@ import InteractiveChat from "@/components/ui/InteractiveChat"
 
 export default function ChatPage() {
   return (
-    <div className="min-h-screen bg-bg relative flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-bg relative flex flex-col items-center justify-start pt-28 pb-8 px-4">
       {/* Background gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] bg-accent/40 rounded-full blur-[120px]" />

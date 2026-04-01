@@ -144,7 +144,7 @@ export default function InteractiveChat() {
     const distFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight
     if (distFromBottom < 200) {
       setTimeout(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' })
       }, 80)
     }
   }, [messages])
