@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Mail, Phone, Send } from "lucide-react";
 import { TextHoverEffect, FooterBackgroundGradient } from "@/components/ui/hover-footer";
+import { useRouter } from "next/navigation";
 
 const footerLinks = {
   services: {
@@ -10,15 +11,14 @@ const footerLinks = {
       { label: "AI-чатбот", href: "/#chatbot" },
       { label: "AI Колл-центр", href: "/#callcenter" },
       { label: "Интеграции", href: "/#integrations" },
-      { label: "Аналитика", href: "/#analytics" },
     ],
   },
   company: {
     label: "Компания",
     links: [
-      { label: "О нас", href: "/about" },
-      { label: "Блог", href: "/blog" },
-      { label: "Цены", href: "/#pricing" },
+      { label: "Демо", href: "/chat" },
+      { label: "О нас", href: "/#how-we-work" },
+      { label: "Услуги", href: "/#features" },
       { label: "Контакты", href: "/contact" },
     ],
   },
@@ -48,6 +48,34 @@ const contactInfo = [
     href: "https://t.me/",
   },
 ];
+
+function FooterLink({ href, label }: { href: string; label: string }) {
+  const router = useRouter();
+
+  if (href.includes("#")) {
+    const [path, hash] = href.split("#");
+    const handleClick = (e: React.MouseEvent) => {
+      e.preventDefault();
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        router.push(href);
+      }
+    };
+    return (
+      <a href={href} onClick={handleClick} className="text-p-02 text-text-grey hover:text-white transition-colors">
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className="text-p-02 text-text-grey hover:text-white transition-colors">
+      {label}
+    </Link>
+  );
+}
 
 export default function Footer() {
   return (
@@ -95,12 +123,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-3">
                 {section.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-p-02 text-text-grey hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href} label={link.label} />
                   </li>
                 ))}
               </ul>

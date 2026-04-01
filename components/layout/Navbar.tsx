@@ -51,7 +51,7 @@ export default function Navbar() {
         <nav className="flex items-center justify-between px-6 h-[64px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-1 shrink-0">
-            <span className="text-h5 font-bold text-white">Zerk</span>
+            <span className="text-[17px] md:text-h5 font-bold text-white">Zerk</span>
             <span className="h-1.5 w-1.5 rounded-full bg-accent mt-1" />
           </Link>
 

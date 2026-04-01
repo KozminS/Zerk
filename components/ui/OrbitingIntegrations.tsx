@@ -37,7 +37,7 @@ const integrations = [
     padding: "0px",
   },
   {
-    label: "Авито",
+    label: "Инстаграм",
     src: "/logos/avito.avif",
     filter: "invert(1) brightness(1.1)",
     padding: "6px",
@@ -47,7 +47,7 @@ const integrations = [
 export default function OrbitingIntegrations() {
   return (
     <div className="w-full h-full flex items-center justify-center p-6">
-      <div className="grid grid-cols-3 gap-3 w-full max-w-[320px]">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-[320px]">
         {integrations.map((item) => (
           <Tile key={item.label} item={item} />
         ))}
@@ -83,6 +83,7 @@ function Tile({ item }: { item: typeof integrations[0] }) {
           alt={item.label}
           width={80}
           height={80}
+          sizes="80px"
           className="w-full h-full"
           style={{
             filter: item.filter,

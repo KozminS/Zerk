@@ -63,6 +63,20 @@
   }
 }
 
+/* Mobile typography overrides — applied below md (768px) */
+@media (max-width: 767px) {
+  .text-h1 { font-size: 32px !important; line-height: 38px !important; }
+  .text-h2 { font-size: 26px !important; line-height: 32px !important; }
+  .text-h3 { font-size: 22px !important; line-height: 28px !important; }
+  .text-h4 { font-size: 20px !important; line-height: 26px !important; }
+  .text-h6 { font-size: 16px !important; line-height: 22px !important; }
+  .text-p-01 { font-size: 15px !important; line-height: 24px !important; }
+  h1 { font-size: 32px !important; line-height: 38px !important; }
+  h2 { font-size: 26px !important; line-height: 32px !important; }
+  h3 { font-size: 22px !important; line-height: 28px !important; }
+  h4 { font-size: 20px !important; line-height: 26px !important; }
+}
+
 @layer utilities {
   /* Hide scrollbar for marquee */
   .no-scrollbar::-webkit-scrollbar { display: none; }

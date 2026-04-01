@@ -44,7 +44,7 @@ export default function Hero() {
             className="opacity-0 animate-fade-in-up"
             style={{ animationDelay: "120ms", animationFillMode: "forwards" }}
           >
-            <h1 className="text-[44px] md:text-[58px] lg:text-[68px] leading-[1.05] font-bold tracking-tight text-center">
+            <h1 className="text-[28px] sm:text-[36px] md:text-[58px] lg:text-[68px] leading-[1.05] font-bold tracking-tight text-center">
               Автоматизируем 100% входящих для{" "}
               <span className="text-accent">вашего агентства</span>
             </h1>
@@ -63,7 +63,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <div
-            className="opacity-0 animate-fade-in-up flex items-center gap-4 flex-wrap justify-center"
+            className="opacity-0 animate-fade-in-up flex flex-col sm:flex-row items-center gap-4 justify-center"
             style={{ animationDelay: "360ms", animationFillMode: "forwards" }}
           >
             <Button variant="primary" href="/contact">

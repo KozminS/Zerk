@@ -183,6 +183,7 @@ export default function Features() {
 
           {/* ── Block 1: Chatbot — text left, visual right ── */}
           <div
+            id="chatbot"
             ref={chatRef.ref}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center transition-all duration-700 ease-out"
             style={{
@@ -221,7 +222,7 @@ export default function Features() {
             </div>
 
             {/* Visual */}
-            <div className="relative rounded-xl overflow-hidden border border-white/8 bg-gradient-to-br from-[#0f1a2e] to-card min-h-[320px] flex items-center justify-center p-6">
+            <div className="relative rounded-xl overflow-hidden border border-white/8 bg-gradient-to-br from-[#0f1a2e] to-card min-h-[200px] md:min-h-[320px] flex items-center justify-center p-6">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,rgba(207,254,37,0.05)_0%,transparent_70%)]" />
               <AnimatedChat />
             </div>
@@ -229,6 +230,7 @@ export default function Features() {
 
           {/* ── Block 2: Call center — visual left, text right ── */}
           <div
+            id="callcenter"
             ref={callRef.ref}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center transition-all duration-700 ease-out"
             style={{
@@ -237,7 +239,7 @@ export default function Features() {
             }}
           >
             {/* Visual — left on desktop */}
-            <div className="relative rounded-xl overflow-hidden border border-white/8 bg-[#0a0a0d] min-h-[320px] flex items-center justify-center order-2 lg:order-1">
+            <div className="relative rounded-xl overflow-hidden border border-white/8 bg-[#0a0a0d] min-h-[200px] md:min-h-[320px] flex items-center justify-center order-2 lg:order-1">
               <CallCenterIllustration />
             </div>
 
@@ -274,6 +276,7 @@ export default function Features() {
 
           {/* ── Block 3: Integration — text left, orbit right ── */}
           <div
+            id="integrations"
             ref={intRef.ref}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center transition-all duration-700 ease-out"
             style={{
@@ -306,7 +309,7 @@ export default function Features() {
             </div>
 
             {/* Orbit visual */}
-            <div className="relative rounded-xl overflow-hidden border border-white/8 bg-[#0a0a0d] min-h-[380px] flex items-center justify-center">
+            <div className="relative rounded-xl overflow-hidden border border-white/8 bg-[#0a0a0d] min-h-[220px] md:min-h-[380px] flex items-center justify-center">
               <OrbitingIntegrations />
             </div>
           </div>

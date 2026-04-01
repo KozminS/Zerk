@@ -176,7 +176,7 @@ export default function Problem() {
 
               <div className="relative flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
                 <div className="flex flex-col items-center md:items-start shrink-0">
-                  <span className="text-[72px] md:text-[88px] font-bold leading-none text-white tracking-tight">
+                  <span className="text-[40px] sm:text-[52px] md:text-[72px] lg:text-[88px] font-bold leading-none text-white tracking-tight">
                     20–30%
                   </span>
                   <span className="text-p-02 text-text-grey mt-1">входящих теряется</span>

@@ -450,8 +450,8 @@ export default function HowWeWork() {
 
           {/* Content */}
           <div className="grid md:grid-cols-2 gap-8 md:gap-14 items-center">
-            {/* Visual */}
-            <div className="order-2 md:order-1">
+            {/* Visual — hidden on mobile, shown from md+ */}
+            <div className="hidden md:block order-2 md:order-1">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
